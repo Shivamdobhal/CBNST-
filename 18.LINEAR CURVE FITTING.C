@@ -32,4 +32,4 @@ int main()
     b=((n*sumxy-sumx*sumy)*1.0/(n*sumx2-sumx*sumx)*1.0);
     printf("\n\nThe line is Y=%3.3f +%3.3f X",a,b);
     return(0);
-}LINEAR 
+}
