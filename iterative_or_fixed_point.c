@@ -11,49 +11,56 @@ float g(float x)
     return ((cos(x)+1)/3);
 }
 
-int main()
+void iteration()
 {
-    float a,b,x1,x0,err=0;
+    float a,b,x1,mid,tol=0;
     int max,i=0;
 
     printf("Enter the Maximum no. of Iterations: ");
     scanf("%d",&max);
 
-    do
+    while (1)
     {
         printf("Enter the Values of a & b: ");
         scanf("%f %f",&a,&b);
 
         if(f(a)*f(b)<0)
         {
+            printf("root present bwn a & b\n");
             break;
         }
         else
             printf("Invalid root......try again!!\n");
-    } while (1);
+    } 
 
-    x0=(a+b)/2;
+    mid=(a+b)/2;
 
-    printf("Enter the allowed Error Value: ");
-    scanf("%f",&err);
+    printf("Enter the tolerance Value: ");
+    scanf("%f",&tol);
     do
     {
-        i=i+1;
-        x1=g(x0);
-
-        if(fabs(f(x1))<err)
+        i++;
+        x1=g(mid);
+        if(fabs(f(x1))<tol)
         {
             printf("Iteration: %d   Roots: %f\n",i,x1);
             printf("Root of the Equation: %f\n",x1);
-            return 0;
+            break;
         }
+      
         printf("Iteration: %d   Roots: %f\n",i,x1);
-        x0=x1;
+        mid=x1;
         if(i>=max)
         {
             printf("Maximum Iteration reached!!!!\n");
-            return 0;
+            break;
+            
         }
-    } while (1);
+    } while(fabs(f(x1))>tol);
     
+}
+int main ()
+{
+    iteration();
+    return 0;
 }
