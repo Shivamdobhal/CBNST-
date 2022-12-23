@@ -1,15 +1,11 @@
 #include <stdio.h>
-#include <conio.h>
 #include <math.h>
-
-#include <string.h>
-
-float fun (float);
-
+float f(float x)
+{
+  return 1 / (1 + (x * x)); 
+}
 void main ()
 {
-
-  printf ("13.TRAPEZOIDAL METHOD\n");
   float result = 1;
   float a, b;
   float h, sum;
@@ -29,22 +25,13 @@ void main ()
 
   h = (b - a) / n;
   sum = 0;
-  sum = fun (a) + fun (b);
+  sum = f(a) + f(b);
   for (i = 1; i < n; i++)
     {
-      sum += 2 * fun (a + i);
+      sum += 2 * f(a + i);
     }
   result = sum * h / 2;
-
   printf ("n\n\n\n Value of the integral is %6.4f\t", result);
-
-  printf ("\n\n\n Press Enter to Exit");
-  getch ();
 }
 
-float fun (float x)
-{
-  float temp;
-  temp = 1 / (1 + (x * x));
-  return temp;
-}
+
