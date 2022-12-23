@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <conio.h>
 #include <math.h>
-
-#include <string.h>
-
-float fun (float);
+float f(float x)
+{
+  return 1 / (1 + (x * x)); 
+}
 
 void main ()
 {
@@ -29,10 +29,10 @@ void main ()
 
   h = (b - a) / n;
   sum = 0;
-  sum=fun(a)+4*fun(a+h)*fun(b);
+  sum=f(a)+4*f(a+h)*f(b);
 for(i=3;i<n;i+=2)
 {
-sum+=2*fun(a+(i-1)*h)+4*fun(a+i*h);
+sum+=2*f(a+(i-1)*h)+4*f(a+i*h);
 }
 result=sum*h/3;
 
@@ -43,10 +43,5 @@ getch();
 
 }
 
-float fun (float x)
-{
-  float temp;
-  temp = 1 / (1 + (x * x));
-  return temp;
-}
+
 
