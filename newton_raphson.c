@@ -1,48 +1,67 @@
-#include<stdio.h>
-#include<math.h>
+#include <stdio.h>
+#include <math.h>
 
 float f(float x)
 {
-    return((x*x*x)-x-1);
+    
+    return (x*sin(x)+cos(x));
+}
+
+float g(float x)
+{
+   
+    return (x*cos(x));
 }
 
 int main()
 {
-    float a,b,x;
-    int i=1;
-    do
+    float a,b,x1,mid,tol=0;
+    int max,i=0;
+
+    printf("Enter the Maximum no. of Iterations: ");
+    scanf("%d",&max);
+
+    while(1)
     {
-        printf("Enter any two values: ");
+        printf("Enter the Values of a & b: ");
         scanf("%f %f",&a,&b);
 
-        if((f(a)*f(b))<0)
+        if(f(a)*f(b)<0)
         {
-            i=0;
+            printf("roots exist\n");
+            break;
         }
         else
-        printf("Invalid Roots\n");
-    } while (i);
+            printf("Invalid root......try again!!\n");
+    } 
 
-    i=1;
-     float tol,mid;
-     int itr=0;
-     printf("Enter the allowed tolorence value: ");
-     scanf("%f",&tol);
-     do
-     {
-        itr++;
-        mid=(a+b)/2;
-        printf("Iteration no : %d,roots are : %f %f, value at current iteration %f\n",itr,a,b,f(mid));
-        if(fabs(f(mid))<tol)
+    mid=(a+b)/2;
+
+    printf("Enter the allowed tolor Value: ");
+    scanf("%f",&tol);
+    while(1)
+    {
+        i++;
+        if(g(mid)==0)
         {
-            i=0;
-            printf("Roots of the equation are : %f",mid);
+            printf("Mathematical tolor\n");
+            return 0;
         }
-        if(f(a)*f(mid)<0)
-            b=mid;
-        else if(f(mid)*f(b)<0)
-            a=mid;
-     } while (i);
-     
-    return 0;
+        x1=mid-(f(mid)/g(mid));
+
+        if(fabs(f(x1))<tol)
+        {
+            printf("Iteration: %d   Roots: %f\n",i,x1);
+            printf("Root of the Equation: %f\n",x1);
+            return 0;
+        }
+        printf("Iteration: %d   Roots: %f\n",i,x1);
+        mid=x1;
+        if(i>=max)
+        {
+            printf("Maximum Iteration reached!!!!\n");
+            return 0;
+        }
+    } 
+    
 }
