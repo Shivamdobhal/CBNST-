@@ -13,52 +13,41 @@ float g(float x)
 
 void iteration()
 {
-    float a,b,x1,mid,tol=0;
+    float a,x1,tol;
     int max,i=0;
 
-    printf("Enter the Maximum no. of Iterations: ");
+    printf("Enter the maximum no. of Iterations: ");
     scanf("%d",&max);
+ 
+        printf("Enter the initial Value  ");
+        scanf("%f",&a);
 
-    while (1)
-    {
-        printf("Enter the Values of a & b: ");
-        scanf("%f %f",&a,&b);
+      printf("Enter the tolerance Value: ");
+      scanf("%f",&tol);
 
-        if(f(a)*f(b)<0)
-        {
-            printf("root present bwn a & b\n");
-            break;
-        }
-        else
-            printf("Invalid root......try again!!\n");
-    } 
-
-    mid=(a+b)/2;
-
-    printf("Enter the tolerance Value: ");
-    scanf("%f",&tol);
     do
     {
         i++;
-        x1=g(mid);
+        x1=g(a);
         if(fabs(f(x1))<tol)
         {
             printf("Iteration: %d   Roots: %f\n",i,x1);
             printf("Root of the Equation: %f\n",x1);
             break;
         }
-      
         printf("Iteration: %d   Roots: %f\n",i,x1);
-        mid=x1;
+               a=x1;
         if(i>=max)
         {
-            printf("Maximum Iteration reached!!!!\n");
+            printf("max Iteration reached!!!!{not convergent)\n");
             break;
             
-        }
+        }            
     } while(fabs(f(x1))>tol);
     
+    printf(" final root is %f",x1);
 }
+
 int main ()
 {
     iteration();
