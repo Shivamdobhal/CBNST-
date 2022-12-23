@@ -1,23 +1,25 @@
 #include<stdio.h>
-float fun(float x,float y)
-{
-    float f;
-    f=x+y;
-    return f;
+float f(float x,float y)
+{   
+    return (x-y)/(x+y);
 }
-main()
+int main ( )
 {
-    float a,b,x,y,h,t,k;
-    printf("\nEnter x0,y0,h,xn: ");
-    scanf("%f%f%f%f",&a,&b,&h,&t);
-    x=a;
-    y=b;
-    printf("\n  x\t  y\n");
-    while(x<=t)
-    {
-        k=h*fun(x,y);
-        y=y+k;
-        x=x+h;
-        printf("%0.3f\t%0.3f\n",x,y);
-    }
+int i,n;
+float a,b,h,xn,x,y;
+printf("\n Enter the values: a,b,h,xn: \n");
+scanf ("%f%f%f%f",&a,&b,&h,&xn);
+n=(xn-a)/h+1;
+for (i=1;i<=n;i++)
+{
+y=b+h*f(a,b);
+x=a+h;
+printf("\n X=%f Y=%f",a,b);
+if(x<xn)
+{
+a=x;
+b=y;
+}
+}
+return 0;
 }
